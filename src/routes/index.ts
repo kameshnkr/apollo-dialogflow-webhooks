@@ -1,9 +1,15 @@
 import express from 'express';
 
-const genericRouter = express.Router();
+const router = express.Router();
 
-genericRouter.get("/healthCheck", (req, res) => {
+import generalRoutes from './general.routes';
+import consultRoutes from './consult.routes';
+
+router.use('/general', generalRoutes);
+consultRoutes.use('/consult', consultRoutes);
+
+router.get("/healthCheck", (req, res) => {
     res.status(200).json({ success: 'running successfully' });
 });
 
-export default genericRouter;
+export default router;

@@ -1,8 +1,8 @@
 import express, { Application } from 'express';
 import cors from 'cors';
 
-import webHookRouter from './routes/webhook.routes';
-import genericRouter from './routes';
+
+import routes from './routes';
 
 const app: Application = express();
 
@@ -10,7 +10,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/webhook', webHookRouter);
-app.use('/', genericRouter);
+app.use('/', routes);
 
 module.exports = app;
